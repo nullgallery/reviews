@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://goryeoyeonwa.github.io/web/sitemap.xml
