@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         download: true,
         header: true,
         complete: function(results) {
-            // 빈 데이터 제거 및 정렬
-            allReviews = results.data.filter(row => row.id && row.image);
+            // 빈 데이터 제거 및 유효 데이터 필터링
+            allReviews = results.data.filter(row => row.id && row.image && row.category);
             
-            // 최근 날짜순 정렬 (2026.05.25 -> 2026.05.01)
+            // 최근 날짜순 정렬 (2026.05.20 -> 2026.05.01)
             allReviews.sort((a, b) => b.date.localeCompare(a.date));
             
             renderReviews('전체');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const filtered = filterTag === '전체' 
             ? allReviews 
-            : allReviews.filter(r => r.tag === filterTag);
+            : allReviews.filter(r => r.category === filterTag);
 
         if (filtered.length === 0) {
             reviewsGrid.innerHTML = `<div class="no-data-msg">'#${filterTag}' 테마에 해당하는 리뷰가 없습니다.</div>`;
@@ -54,21 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
         filtered.forEach((review, index) => {
             const card = document.createElement('div');
             card.className = 'review-card fade-in';
-            card.dataset.tag = review.tag;
+            card.dataset.category = review.category;
             
-            const starText = '★'.repeat(parseInt(review.rating)) + '☆'.repeat(5 - parseInt(review.rating));
+            // stars 필드에 따른 별 표시 생성
+            const starCount = parseInt(review.stars) || 5;
+            const starText = '★'.repeat(starCount) + '☆'.repeat(5 - starCount);
 
             card.innerHTML = `
-                <div class="review-img-wrap">
-                    <img src="images/reviews/${review.image}" alt="${review.comment.substring(0, 30)}..." loading="lazy">
-                    <div class="review-tag-badge"># ${review.tag}</div>
+                <div class="card-img-container">
+                    <img src="${review.image}" alt="${review.comment.substring(0, 30)}..." class="card-img" loading="lazy">
+                    <div class="card-category"># ${review.category}</div>
                 </div>
-                <div class="review-body">
-                    <div class="review-stars">${starText}</div>
-                    <p class="review-text">${review.comment}</p>
-                    <div class="review-meta">
-                        <span class="review-author">${review.id}</span>
-                        <span class="review-date">${review.date}</span>
+                <div class="card-body">
+                    <div class="card-stars">${starText}</div>
+                    <p class="card-text">${review.comment}</p>
+                    <div class="card-footer">
+                        <span class="card-author">${review.id}</span>
+                        <span class="card-date">${review.date}</span>
                     </div>
                 </div>
             `;
@@ -81,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reviewsGrid.appendChild(card);
         });
 
-        // 💡 [핵심] 스크롤 시 순차적으로 떠오르는 뷰포트 애니메이션 바인딩
+        // 스크롤 시 순차적으로 떠오르는 뷰포트 애니메이션 바인딩
         observeFadeInCards();
     }
 
@@ -114,17 +116,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, idx) => {
                 if (entry.isIntersecting) {
-                    // 카드들이 한꺼번에 뜨지 않고 0.08초 간격으로 순차적(Staggered) 페이드인되도록 시각 보정
+                    // 카드들이 한꺼번에 뜨지 않고 0.05초 간격으로 순차적(Staggered) 페이드인되도록 시각 보정
                     setTimeout(() => {
                         entry.target.classList.add('visible');
-                    }, idx * 50);
+                    }, idx * 40);
                     
                     observer.unobserve(entry.target);
                 }
             });
         }, {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px' // 하단에서 살짝 올라왔을 때 미리 로드되게 세팅
+            rootMargin: '0px 0px -30px 0px' // 하단에서 살짝 올라왔을 때 미리 로드되게 세팅
         });
 
         cards.forEach(card => observer.observe(card));
@@ -132,14 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. 시네마틱 라이트박스 제어
     function openLightbox(review) {
-        lbImg.src = `images/reviews/${review.image}`;
+        lbImg.src = review.image;
         lbImg.alt = review.comment;
         lbText.textContent = review.comment;
         lbAuthor.textContent = review.id;
         lbDate.textContent = review.date;
-        lbTag.textContent = `# ${review.tag}`;
+        lbTag.textContent = `# ${review.category}`;
         
-        const starText = '★'.repeat(parseInt(review.rating)) + '☆'.repeat(5 - parseInt(review.rating));
+        const starCount = parseInt(review.stars) || 5;
+        const starText = '★'.repeat(starCount) + '☆'.repeat(5 - starCount);
         document.querySelector('.lightbox-stars').textContent = starText;
 
         lightbox.classList.add('open');
@@ -167,6 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideLoader() {
         setTimeout(() => {
             loader.classList.add('hidden');
-        }, 600);
+        }, 500);
     }
 });
