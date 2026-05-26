@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://goryeoyeonwa.github.io/web/sitemap.xml
+Sitemap: https://nullgallery.github.io/reviews/sitemap.xml
+Sitemap: https://nullgallery.github.io/reviews/sitemap_reviews.xml
