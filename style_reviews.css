@@ -1,16 +1,15 @@
-/* ── style_reviews.css ─────────────────────────────── */
+/* ── style_reviews.css (Goryeo Yeonwa Premium Branding) ──────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 :root {
-    --bg-color: #050505;
-    --card-bg: rgba(18, 18, 18, 0.6);
-    --card-border: rgba(255, 255, 255, 0.05);
-    --text-color: #e0e0e0;
-    --text-muted: #888888;
-    --accent-color: #d4af37; /* 시네마틱 골드 */
-    --accent-glow: rgba(212, 175, 55, 0.3);
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Noto Sans KR', sans-serif;
-    --font-display: 'Outfit', sans-serif;
+    --bg-color: #F4F5F6; /* 미술관 오프화이트 */
+    --card-bg: #FFFFFF;
+    --card-border: #EAEAEA;
+    --text-color: #1A1A1A; /* 미니멀리즘 블랙 */
+    --text-muted: #767676; /* 고급 웜 그레이 */
+    --accent-color: #000000;
+    --font-heading: 'Cormorant Garamond', 'Noto Sans KR', serif;
+    --font-body: 'Montserrat', 'Noto Sans KR', sans-serif;
 }
 
 /* ── 기본 리셋 ── */
@@ -24,8 +23,14 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 /* ── 로딩 스크린 ── */
@@ -37,117 +42,128 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .loader.hidden {
     opacity: 0;
     pointer-events: none;
 }
 .spinner {
-    width: 45px; height: 45px;
-    border: 3px solid rgba(255,255,255,0.05);
+    width: 40px; height: 40px;
+    border: 2px solid rgba(0,0,0,0.05);
     border-top-color: var(--accent-color);
     border-radius: 50%;
-    animation: spin 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite;
+    animation: spin 0.8s linear infinite;
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* ── 네비게이션 헤더 ── */
+/* ── 공식 사이트 스타일 네비게이션 헤더 ── */
 .header {
-    position: relative;
     width: 100%;
-    padding: 2rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
     z-index: 10;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background-color: transparent;
 }
 .logo a {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    letter-spacing: 6px;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    letter-spacing: 0.22em; /* 와이드 자간 */
     font-weight: 500;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+    color: #000000;
+    text-transform: uppercase;
 }
-.header-subtitle {
-    font-family: var(--font-display);
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 2.2rem;
+}
+.nav-menu a {
     font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: var(--accent-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
     font-weight: 400;
+    color: #555555;
+}
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: #000000;
+    font-weight: 500;
 }
 
-/* ── 히어로 섹션 ── */
+/* ── 미니멀리즘 히어로 섹션 ── */
 .hero-section {
     position: relative;
-    padding: 6rem 2rem 4rem 2rem;
+    padding: 5rem 2rem 4rem 2rem;
     text-align: center;
-    background: radial-gradient(circle at center, rgba(30, 25, 15, 0.4) 0%, rgba(5, 5, 5, 0) 70%);
+    background-color: transparent;
 }
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 .hero-badge {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--accent-color);
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    padding: 0.4rem 1.2rem;
-    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--text-color);
+    border-bottom: 1.5px solid var(--text-color);
+    padding-bottom: 0.3rem;
     display: inline-block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
 }
 .hero-section h1 {
     font-family: var(--font-heading);
     font-size: 3rem;
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: 2px;
-    color: #fff;
-    margin-bottom: 1.5rem;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: #000000;
+    margin-bottom: 1.8rem;
+    word-break: keep-all;
 }
 .hero-section h1 span {
-    color: var(--accent-color);
-    font-weight: 600;
+    font-weight: 500;
 }
 .hero-desc {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-muted);
     font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
     word-break: keep-all;
+    line-height: 1.8;
 }
 .rating-summary {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 0.6rem 1.5rem;
-    border-radius: 4px;
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    padding: 0.6rem 1.6rem;
 }
 .stars {
-    color: var(--accent-color);
-    font-size: 1rem;
-    letter-spacing: 2px;
+    color: #000000;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 .rating-text {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
 .rating-text strong {
-    color: #fff;
-    font-size: 1.1rem;
+    color: #000;
+    font-size: 1rem;
 }
 .reviews-count {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
 }
 
@@ -155,130 +171,124 @@ body {
 .content-main {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem 8rem 2rem;
+    padding: 0 3rem 8rem 3rem;
 }
 
-/* 글래스모피즘 필터 바 */
+/* 플랫 미니멀 버튼 필터 바 */
 .filter-bar {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-bottom: 3.5rem;
+    gap: 0.5rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 1.5rem;
 }
 .filter-btn {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: transparent;
+    border: 1px solid transparent;
     color: var(--text-muted);
-    padding: 0.6rem 1.4rem;
+    padding: 0.5rem 1.2rem;
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
     font-weight: 400;
-    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 .filter-btn:hover {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
+    color: #000000;
 }
 .filter-btn.active {
-    color: #000;
+    color: #FFFFFF;
     font-weight: 500;
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 20px var(--accent-glow);
+    background-color: #000000;
 }
 
 /* 리뷰 그리드 시스템 */
 .reviews-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 3rem 2rem; /* 넉넉한 공간 여백 부여 */
     min-height: 400px;
 }
 .grid-placeholder {
     grid-column: 1 / -1;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-muted);
-    padding: 4rem 0;
+    padding: 6rem 0;
 }
 
-/* 리뷰 카드 개별 요소 */
+/* 직각 엣지 카드 디자인 */
 .review-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 6px;
+    border-radius: 0px; /* 완벽한 직각 */
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
     
     /* Reveal 애니메이션을 위한 초기 상태 */
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
 }
 .review-card.visible {
     opacity: 1;
     transform: translateY(0);
 }
 .review-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(212, 175, 55, 0.3);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 1px var(--accent-glow);
+    transform: translateY(-5px);
+    border-color: #B5B5B5;
 }
 
 .card-img-container {
     position: relative;
     width: 100%;
     padding-top: 75%; /* 4:3 비율 */
-    background-color: #0a0a0a;
+    background-color: #EAEAEA;
     overflow: hidden;
 }
 .card-img {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .review-card:hover .card-img {
-    transform: scale(1.08);
+    transform: scale(1.04);
 }
 .card-category {
     position: absolute;
-    top: 1rem; left: 1rem;
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--accent-color);
-    padding: 0.3rem 0.8rem;
-    font-size: 0.7rem;
-    font-family: var(--font-display);
-    letter-spacing: 1px;
-    border-radius: 3px;
-    backdrop-filter: blur(5px);
+    top: 0.8rem; left: 0.8rem;
+    background: #000000;
+    color: #FFFFFF;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.6rem;
+    font-family: var(--font-body);
+    letter-spacing: 0.1em;
+    font-weight: 500;
 }
 
 .card-body {
-    padding: 1.5rem;
+    padding: 1.4rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     justify-content: space-between;
 }
 .card-stars {
-    color: var(--accent-color);
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
+    color: #000000;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
     margin-bottom: 0.8rem;
 }
 .card-text {
-    font-size: 0.95rem;
-    color: #ccc;
+    font-size: 0.85rem;
+    color: #333333;
     font-weight: 300;
     line-height: 1.7;
     margin-bottom: 1.5rem;
@@ -293,29 +303,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.03);
-    padding-top: 1rem;
-    font-size: 0.8rem;
-    font-family: var(--font-display);
+    border-top: 1px solid #F0F0F0;
+    padding-top: 0.8rem;
+    font-size: 0.75rem;
+    font-family: var(--font-body);
     color: var(--text-muted);
 }
 .card-author {
     font-weight: 400;
+    color: #1A1A1A;
 }
 
-/* ── 극장형 릴레이 라이트박스 모달 ── */
+/* ── 오프화이트 뮤지엄 카탈로그 라이트박스 ── */
 .lightbox {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.94);
+    background: rgba(244, 245, 246, 0.96); /* 오프화이트 반투명 마스크 */
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    backdrop-filter: blur(15px);
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(20px);
 }
 .lightbox.open {
     opacity: 1;
@@ -326,50 +337,46 @@ body {
     top: 2rem; right: 2rem;
     background: none;
     border: none;
-    color: #fff;
-    font-size: 1.8rem;
+    color: #000000;
+    font-size: 1.5rem;
     cursor: pointer;
-    width: 50px; height: 50px;
-    border-radius: 50%;
+    width: 45px; height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    transition: transform 0.3s;
     z-index: 1010;
 }
 .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.05);
     transform: rotate(90deg);
 }
 
 .lightbox-wrapper {
-    background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
     display: flex;
-    max-width: 1100px;
+    max-width: 1050px;
     width: 90%;
-    height: 80vh;
-    border-radius: 8px;
+    height: 75vh;
+    border-radius: 0px; /* 직각 */
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
-    transform: scale(0.95) translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); /* 강한 그림자는 빼고 고급스러운 음영만 부여 */
+    transform: scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .lightbox.open .lightbox-wrapper {
-    transform: scale(1) translateY(0);
+    transform: scale(1);
 }
 
 .lightbox-img-container {
-    flex: 1.4;
-    background: #000;
+    flex: 1.3;
+    background: #EAEAEA;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 #lightbox-img {
-    max-width: 100%;
-    max-height: 100%;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -381,43 +388,44 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-    background: #0e0e0e;
+    border-left: 1px solid var(--card-border);
+    background: #FFFFFF;
 }
 .lightbox-stars {
-    color: var(--accent-color);
-    font-size: 1.1rem;
+    color: #000000;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     margin-bottom: 1.5rem;
 }
 .lightbox-text {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1.8;
-    color: #e0e0e0;
-    margin-bottom: 2.5rem;
+    color: #2A2A2A;
+    margin-bottom: 2rem;
     word-break: keep-all;
     font-weight: 300;
 }
 .lightbox-meta {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 1.5rem;
+    border-top: 1px solid #EAEAEA;
+    padding-top: 1.2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    font-size: 0.9rem;
-    font-family: var(--font-display);
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-family: var(--font-body);
     color: var(--text-muted);
 }
 .lightbox-author {
-    color: #fff;
-    font-weight: 400;
+    color: #000000;
+    font-weight: 500;
 }
 .lightbox-tag {
-    color: var(--accent-color);
-    margin-top: 0.2rem;
+    color: #000000;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
-/* ── 정적 SEO 감춤 태그 ── */
+/* SEO 숨김 태그 */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -429,62 +437,92 @@ body {
     border: 0;
 }
 
-/* ── 푸터 ── */
+/* ── 공식 푸터 복제 구현 ── */
 .footer {
-    background: #0a0a0a;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 5rem 2rem 4rem 2rem;
+    background: #F4F5F6;
+    border-top: 1px solid var(--card-border);
+    padding: 5rem 3rem 4rem 3rem;
 }
 .footer-inner {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
-.footer-brand {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    letter-spacing: 4px;
-    color: #fff;
-    margin-bottom: 3rem;
-    text-align: center;
+.footer-main-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 4rem;
 }
-.footer-info {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-bottom: 4rem;
+
+/* 공식 맵 임베드 컨테이너 */
+.footer-map-container {
+    flex: 1.2;
+    min-width: 320px;
+    height: 220px;
+    border: 1px solid var(--card-border);
+    background-color: #EAEAEA;
+}
+.footer-map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.footer-nav-row {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+    min-width: 280px;
 }
 .footer-col h4 {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: var(--accent-color);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #000000;
     margin-bottom: 1.2rem;
+    font-weight: 500;
 }
 .footer-col p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
     line-height: 1.8;
 }
-.footer-muted {
-    font-size: 0.8rem;
-    margin-top: 0.3rem;
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.02);
-    padding-top: 2rem;
-    text-align: center;
+.footer-col a {
     font-size: 0.8rem;
     color: var(--text-muted);
-    font-family: var(--font-display);
-    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+.footer-col a:hover {
+    color: #000000;
 }
 
-/* ── 반응형 레이아웃 ── */
+.footer-bottom {
+    border-top: 1px solid #EAEAEA;
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    letter-spacing: 0.05em;
+}
+
+/* ── 반응형 처리 ── */
 
 @media (max-width: 1200px) {
     .reviews-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        gap: 2.2rem 1.5rem;
     }
     .lightbox-wrapper {
         height: auto;
@@ -505,18 +543,20 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     .header {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
     }
     .logo a {
-        font-size: 1.8rem;
+        font-size: 1.1rem;
     }
     .hero-section h1 {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
     }
-    .footer-info {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
+    .footer-main-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .footer-nav-row {
+        justify-content: flex-start;
     }
 }
 
@@ -529,10 +569,11 @@ body {
     }
     .filter-bar {
         margin-bottom: 2rem;
+        padding-bottom: 1rem;
     }
     .filter-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
     }
     .lightbox-img-container {
         height: 35vh;
@@ -541,7 +582,11 @@ body {
         padding: 1.5rem;
     }
     .lightbox-text {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         margin-bottom: 1.5rem;
+    }
+    .footer-nav-row {
+        flex-direction: column;
+        gap: 2rem;
     }
 }
