@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Sitemap: https://nullgallery.github.io/reviews/sitemap.xml
 Sitemap: https://nullgallery.github.io/reviews/sitemap_reviews.xml
-# Deploy trigger: 1779796193.0028214
+# Deploy trigger: 1779853765.298145
